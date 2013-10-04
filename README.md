@@ -1,6 +1,6 @@
 # mocksy
 
-Mock http server for testing. Regurgitates the request object.
+Mock Node.js http server for testing. Regurgitates the request object.
 
 ## Install
 
@@ -31,6 +31,22 @@ describe('Some http endpoint', function () {
 });
 
 ```
+
+## API
+
+#### new Mocksy([{port: 1337}]);
+
+Create and instance of the mocksy mock server. Optionally pass in the following options
+
+* ` port ` - server port. defaults to *1137* if no port is provided
+
+#### start(callback)
+
+Starts the mocksy mock server. Takes a callback as the only argument.
+
+#### stop(callback)
+
+Stops the mocksy mock server. Takes a callback as the only argument.
 
 ## Run Tests
 
