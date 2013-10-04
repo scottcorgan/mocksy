@@ -26,6 +26,10 @@ var Mocksy = function (options) {
 Mocksy.prototype.start = function (callback) {
   var self = this;
   
+  if (this.started) {
+    return callback();
+  }
+  
   this.server.listen(this.port, function (err) {
     if (!err) {
       self.started = true;
@@ -38,6 +42,10 @@ Mocksy.prototype.start = function (callback) {
 
 Mocksy.prototype.stop = function (callback) {
   var self = this;
+  
+  if (this.stopped) {
+    return callback();
+  }
   
   this.server.close(function (err) {
     if (!err) {

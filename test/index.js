@@ -23,13 +23,19 @@ test('Starts and stops the server', function (t) {
     t.ok(mocksy.started, 'server is started');
     t.notOk(mocksy.stopped, 'server is not stopped');
     
+    mocksy.start(function () { // test for server already started
+      mocksy.stop(function (err) {
+        t.equal(mocksy.started, false, 'server is not started');
+        t.equal(mocksy.stopped, true, 'server is stopped');
+         
+        mocksy.stop(function () {
+          // test for already stopped server
+          t.end();
+        });
+         
+      });
+    });
     
-    
-    mocksy.stop(function (err) {
-       t.equal(mocksy.started, false, 'server is not started');
-       t.equal(mocksy.stopped, true, 'server is stopped');
-       t.end();
-     });
   });
 });
 
