@@ -1,8 +1,6 @@
 var http = require('http');
 var formidable = require('formidable');
 
-
-
 var Mocksy = function (options) {
   this.port = options.port || 1337;
   this.started = false;
