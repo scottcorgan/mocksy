@@ -44,7 +44,9 @@ test('Response values' , function (t) {
   
   mocksy.start(function () {
     
-    request.get('http://localhost:1337', function (err, response, body) {
+    request.get('http://localhost:1337', {
+      withCredentials: true
+    }, function (err, response, body) {
       body = JSON.parse(body);
       t.equal(body.method, 'GET', 'method');
       t.equal(body.url, '/', 'url')
@@ -53,6 +55,7 @@ test('Response values' , function (t) {
       }, 'headers');
       t.deepEqual(body.body, {}, 'body');
       t.deepEqual(body.files, {}, 'files');
+      t.equal(response.request.withCredentials, true, 'passes credentials flag');
       
       mocksy.stop(function () {
         t.end();
