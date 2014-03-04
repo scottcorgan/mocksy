@@ -15,7 +15,8 @@ var Mocksy = function (options) {
          url: req.url,
          method: req.method,
          body: fields,
-         files: files
+         files: files,
+         withCredentials: req.withCredentials
        }));
     });
   });
