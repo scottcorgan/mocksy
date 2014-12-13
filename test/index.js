@@ -65,3 +65,25 @@ test('Response values' , function (t) {
     
   });
 });
+
+test('intercept', function (t) {
+  
+  var mocksy = new Mocksy({port: 1337});
+  
+  mocksy.get('/testing', 'just testing');
+  
+  mocksy.start(function () {
+    
+    request({
+      url: 'http://localhost:1337/testing',
+      method: 'GET',
+    }, function (err, response, body) {
+     
+      t.equal(body, 'just testing', 'intercepted');
+      mocksy.stop(function () {
+        t.end();
+      });
+    });
+    
+  });
+});
